@@ -37,7 +37,7 @@ class QuotesTest < ApplicationSystemTestCase
     click_on "Update quote"
 
     assert_selector "h1", text: "Quotes"
-    assert_text: "Updated quote"
+    assert_text "Updated quote"
   end
 
   test "Destroying a quote" do
