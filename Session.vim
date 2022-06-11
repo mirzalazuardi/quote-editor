@@ -8,11 +8,13 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
+badd +4 db/migrate/20220611010555_create_quotes.rb
+badd +2 app/models/quote.rb
 badd +1 test/system/quotes_test.rb
 badd +18 config/database.yml
 badd +1 Gemfile
-badd +0 test/fixtures/quotes.yml
-badd +0 ~/lab/quote-editor/.git/index
+badd +1 test/fixtures/quotes.yml
+badd +1 ~/lab/quote-editor/.git/index
 argglobal
 %argdel
 $argadd Gemfile
@@ -107,11 +109,10 @@ if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 48
-normal! 030|
+normal! 05|
 tabnext
 edit test/fixtures/quotes.yml
 argglobal
-balt test/fixtures/quotes.yml
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -128,7 +129,7 @@ keepjumps exe s:l
 normal! zt
 keepjumps 8
 normal! 019|
-tabnext 1
+tabnext 3
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
